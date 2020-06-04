@@ -4,13 +4,13 @@ class Bottles
   end
 
   def verses(starting, ending)
-    starting.downto(ending).map {|n| verse(n)}.join("\n")
+    starting.downto(ending).map { |n| verse(n) }.join("\n")
   end
 
   def verse(number)
-    "#{quantity(number).capitalize} #{container(number)} of beer on the wall, " +
-    "#{quantity(number)} #{container(number)} of beer.\n" +
-    "#{action(number)} " +
+    "#{quantity(number).capitalize} #{container(number)} of beer on the wall, " \
+    "#{quantity(number)} #{container(number)} of beer.\n" \
+    "#{action(number)} " \
     "#{quantity(successor(number))} #{container(number - 1)} of beer on the wall.\n"
   end
 
