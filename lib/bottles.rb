@@ -17,6 +17,8 @@ class Bottles
   def container(number)
     if number == 1
       'bottle'
+    elsif (number % 6).zero? && !number.zero?
+      'six-pack'
     else
       'bottles'
     end
@@ -33,6 +35,8 @@ class Bottles
   def quantity(number)
     if number.zero?
       'no more'
+    elsif (number % 6).zero? && !number.zero?
+      (number / 6).to_s
     else
       number.to_s
     end
