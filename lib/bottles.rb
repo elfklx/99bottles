@@ -21,13 +21,14 @@ class BottleNumber
   attr_reader :number
 
   def self.for(number)
-    klass = case number
-            when 0
+    klass = if number.zero?
               BottleNumber0
-            when 1
+            elsif number == 1
               BottleNumber1
-            when 6
+            elsif number == 6
               BottleNumber6
+            elsif (number % 6).zero?
+              BottleNumber6s
             else
               BottleNumber
             end
@@ -96,5 +97,15 @@ class BottleNumber6 < BottleNumber
 
   def container
     'six-pack'
+  end
+end
+
+class BottleNumber6s < BottleNumber
+  def quantity
+    (number / 6).to_s
+  end
+
+  def container
+    'six-packs'
   end
 end
