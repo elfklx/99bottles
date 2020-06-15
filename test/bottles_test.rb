@@ -1,6 +1,9 @@
 gem 'minitest', '~> 5.4'
 require 'minitest/autorun'
+require 'minitest/reporters'
 require_relative '../lib/bottles'
+
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 
 class BottlesTest < Minitest::Test
   def test_the_first_verse
@@ -42,6 +45,26 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
     VERSE
     assert_equal expected, ::Bottles.new.verse(0)
   end
+
+  def test_verse_six_pack
+    expected = <<-VERSE
+7 bottles of beer on the wall, 7 bottles of beer.
+Take one down and pass it around, 1 six-pack of beer on the wall.
+
+1 six-pack of beer on the wall, 1 six-pack of beer.
+Take one down and pass it around, 5 bottles of beer on the wall.
+VERSE
+    assert_equal expected, ::Bottles.new.verses(7, 6)
+  end
+
+  # def test_verse_multiples_of_six_pack
+  #   expected = <<-VERSE
+# 2 six-packs of beer on the wall, 2 six-packs of beer.
+# Take one down and pass it around, 11 bottles of beer on the wall.
+
+# VERSE
+  #   assert_equal expected, ::Bottles.new.verse(12)
+  # end
 
   def test_a_couple_verses
     expected = <<-VERSES
